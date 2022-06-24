@@ -36,7 +36,7 @@ namespace ConsoleApp2
                         where f.CreationTimeUtc <= zipmnth3
                         select f;
 
-            //move files, create folder
+            //move files
             foreach (var f in files)
             {
                 string filename = Path.Combine(getzipped, f.Name);
@@ -44,7 +44,7 @@ namespace ConsoleApp2
                 Console.WriteLine("{0}", f.Name);
                 File.Move(f.FullName, filename);
             }
-            //zip the folder (and handle possible duplicate exception)
+            //zip the folder
             string zipdest = Path.Combine(dest, schema + ".zip");
             ZipFile.CreateFromDirectory(getzipped, zipdest);
             Directory.Delete(getzipped, true);
